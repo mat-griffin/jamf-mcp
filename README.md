@@ -1,1 +1,177 @@
-# jamf-mcp
+# Jamf Pro MCP Server
+⚠️ EXPERIMENTAL - READ before use.
+
+The MCP server provides integration to Jamf Pro. It has only been tested in Cursor AI.
+It allows for querying computer information by serial number, ID, user name from Cursor AI.
+The AI will summarise and then ask you what else you might want to know.
+
+
+Issues:
+Even though set in the mcp_jamf_server.js Cursor may require you to enter your Jamf username and password in cleartext! 
+Therefore be prepared to delete or change the Jamf account password after use.
+As said this is EXPERIMENTAL.
+
+
+# Requirements
+Cursor AI
+brew
+node
+
+If brew is not installed got to https://brew.sh/and install.
+Once brew is installed install node:
+brew install node
+
+You will need your Jamf Pro URL plus /api at the end e.g. https://myserver.jamfcloud.com/api
+A Jamf Pro readonly test account - be prepared to DELETE this account after use.
+
+
+# Installation
+Clone the project from Github or create a folder called jamf_mcp in your home directory and copy the following files into the folder:
+
+mcp_jamf_server.js
+package-lock.json
+package.json
+
+Edit mcp_jamf_server.js
+Add your Jamf URL and Jamf username and password.
+Again I advise the Jamf account is readonly and is a throwaway account.
+
+Open Terminal CD into the jamf_mcp folder.
+Enter: npm install
+Terminal will show similar to this:
+
+added 111 packages, and audited 112 packages in 991ms
+
+33 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Enter: npm start
+The terminal should show
+
+> jamf_mcp_test@1.0.0 start
+> node mcp_jamf_server.js
+
+Jamf MCP server running on stdio
+
+
+The MCP server is now running!
+
+
+### Using the MCP Server with Cursor AI
+Launch Cursor
+Click Open project and select the jamf_mcp folder
+
+In Cursor go to Settings > MCP
+
+Click Add new global MCP Server.
+Enter the mcp json connection details ensuring the path where you placed or clones the files to is correct, in this example its ~/jamf_mcp/mcp_jamf_server.js
+
+{
+  "mcpServers": {
+    "jamf-pro": {
+      "command": "node",
+      "args": [
+        "~/jamf_mcp/mcp_jamf_server.js"
+      ]
+    }
+  }
+}
+
+Save the setting.
+You will now see the jamf-pro server MCP connection.
+You may need to click enable or refresh.
+It will show a green dot when it connects to the mcp server.
+
+In Cursor open AI chat in Agent mode enter a question to test the connection
+"How many computers are in Jamf?"
+
+If Cursor starts doing odd stuff like creating code or searching the web force it to use the jamf-pro mcp by saying "How many computers are in Jamf? Use the jamf-pro MCP connection."
+
+If you get a response like:
+"Okay, I can help with that. I need your Jamf Pro username and password to get the computer counts. Could you please provide them?"
+
+Enter you username and password in the chat! - This is clear text so this is why I say be prepared to change delete the account after testing.
+
+jamf_readonly_account
+my_jamf_password
+
+Cursor will response similar to
+"OK. I will use the credentials you provided to get the management counts from Jamf Pro."
+
+On each use of the MCP query you may need to click the blue Run Tool to proceed. To stop this ensure Cursor Enable Auto Run Mode is ticked in Settings > Features
+
+Cursor should respond with something like.
+
+According to Jamf Pro:
+There are 2000 managed computers.
+There are 155 unmanaged computers.
+The total number of computers is 2155.
+
+Try another query like:
+"List 5 managed computers"
+
+Cursor should respond with something like:
+
+Here are the details:
+ID: 3983
+ID: 3209
+ID: 7309
+ID: 2440
+ID: 2950
+
+Now ask:
+"Show me details of 3983" (enter your choice of ID from the results you got)
+
+You should get detailed information like this (some items have be changed in the example below).
+
+Okay, here are the details for the computer with ID 3983:
+
+General Information:
+Name: C02XXXXX
+Platform: Mac
+Last Contact Time: 2025-04-03T13:49:34.784Z
+Last Enrolled Date: 2024-07-09T11:07:14.769Z
+Enrollment Method: Standard User
+Site: None
+Hardware:
+Model: MacBook Pro (16-inch, 2019)
+Model Identifier: MacBookPro16,1
+Serial Number: C02XXXXX (Note: This was listed as "Unknown" in the previous list view, but is present here)
+Processor: Unknown (Speed: 2400 MHz, 8 Cores)
+Memory: 32 GB
+MAC Address: 5C:XXXXX
+Operating System:
+Name: macOS
+Version: 15.3.2
+Build: 24D81
+FileVault 2 Status: BOOT_ENCRYPTED
+Security:
+Gatekeeper Status: APP_STORE_AND_IDENTIFIED_DEVELOPERS
+Xprotect Version: 5292
+Storage:
+Device: disk0 (APPLE SSD AP0512N)
+Size: ~500 GB
+Partitions: Includes Macintosh HD (Boot), VM, Data, Update, Preboot (various encryption states and usage percentages)
+User:
+Username: bob
+Real Name: bob smith
+Email: bob.smith@somewhere.com
+Position: User
+
+
+Cursor may also respond with suggestions.
+
+### Connection Tools
+If you examine the Cursor MCP Connection in Settings > MCP you will see there are 7 tools to retrieve information.
+getComputerBySerial
+getComputerById
+listComputers
+getExtensionAttributes
+getManagementCounts
+getComputersBySerial
+getSecurityStatus
+
+
+As you are in Cursor use it to add more tools, fix my bugs and poor code!
