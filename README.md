@@ -1,5 +1,5 @@
 # Jamf Pro MCP Server
-⚠️ EXPERIMENTAL - READ before use.
+⚠️ **EXPERIMENTAL - READ before use**
 
 ## Summary
 The MCP server provides integration to Jamf Pro. It has only been tested in Cursor AI.
@@ -7,14 +7,13 @@ It allows for querying computer information by serial number, ID, user name from
 The AI will summarise and then ask you what else you might want to know.
 
 ## Security Warning
-- Cursor AI may require Jamf credentials in cleartext
-- Use a dedicated read-only test account
-- Plan to delete/change account credentials after use
+- Cursor AI may require Jamf credentials in cleartext!
+- Use a dedicated read-only Jamf test account
+- Plan to delete/change the Jamf account credentials after use
 
 ## Issues:
-Even though set in the mcp_jamf_server.js Cursor may require you to enter your Jamf username and password in cleartext! 
-Therefore be prepared to delete or change the Jamf account password after use.
-As said this is EXPERIMENTAL.
+Even though set in the `mcp_jamf_server.js` Cursor may require you to enter your Jamf username and password in cleartext! Therefore be prepared to delete or change the Jamf account password after use.
+As said this is **EXPERIMENTAL**.
 
 ## Prerequisites
 - Cursor AI
@@ -23,118 +22,128 @@ As said this is EXPERIMENTAL.
 - Jamf Pro URL (format: https://myserver.jamfcloud.com/api)
 - Jamf Pro read-only account
 
-If brew is not installed got to https://brew.sh/and install.
+If Homebrew is not installed got to https://brew.sh and install.
 Once brew is installed install node:
-brew install node
 
-You will need your Jamf Pro URL plus /api at the end e.g. https://myserver.jamfcloud.com/api
-A Jamf Pro readonly test account - be prepared to DELETE this account after use.
+    brew install node
+
+You will need your Jamf Pro URL plus `/api` at the end e.g. `https://myserver.jamfcloud.com/api`
+A Jamf Pro readonly test account.
 
 
 # Installation
-Clone the project from Github or create a folder called jamf_mcp in your home directory and copy the following files into the folder:
+These instructions have been written for Mac user.
+Clone the project from Github or create a folder called `jamf_mcp` in your home directory and copy the following files into the folder:
 
-mcp_jamf_server.js
-package-lock.json
-package.json
+`mcp_jamf_server.js`
+`package-lock.json`
+`package.json`
 
-Edit mcp_jamf_server.js
-Add your Jamf URL and Jamf username and password.
-Again I advise the Jamf account is readonly and is a throwaway account.
+Open and edit `mcp_jamf_server.js`
+Add your Jamf URL *(around line 18)* 
+Add your Jamf username *(around line 22)* 
+Add your Jamf and password *(around line 23)* 
+Again I advise the Jamf account is read-only and is a throwaway account.
 
-Open Terminal CD into the jamf_mcp folder.
-Enter: npm install
-Terminal will show similar to this:
+Open Terminal CD into the `jamf_mcp` folder.
+**Enter:** `npm install`
 
-added 111 packages, and audited 112 packages in 991ms
+Terminal will output similar to this:
 
-33 packages are looking for funding
-  run `npm fund` for details
+    added 111 packages, and audited 112 packages in 991ms
+    
+    33 packages are looking for funding
+      run `npm fund` for details
+    
+    found 0 vulnerabilities
 
-found 0 vulnerabilities
+**Enter:** `npm start`
+The terminal should show similar to this:
 
-Enter: npm start
-The terminal should show
+    > jamf_mcp_test@1.0.0 start
+    > node mcp_jamf_server.js
+    
+    Jamf MCP server running on stdio
 
-> jamf_mcp_test@1.0.0 start
-> node mcp_jamf_server.js
-
-Jamf MCP server running on stdio
-
-
-The MCP server is now running!
+The Jamf MCP server is now running 
 
 
-### Using the MCP Server with Cursor AI
-Launch Cursor
-Click Open project and select the jamf_mcp folder
+## Using the MCP Server with Cursor AI
+Launch Cursor.
+Click *Open project* and select the `jamf_mcp` folder you cloned or created earlier.
 
-In Cursor go to Settings > MCP
+In Cursor go to *Settings > MCP*
 
-Click Add new global MCP Server.
-Enter the mcp json connection details ensuring the path where you placed or clones the files to is correct, in this example its ~/jamf_mcp/mcp_jamf_server.js
+Click **Add new global MCP Server**.
+Enter the mcp json connection details ensuring the path where you placed or cloned the files to is correct. 
+In this example its `~/jamf_mcp/mcp_jamf_server.js` 
 
-{
-  "mcpServers": {
-    "jamf-pro": {
-      "command": "node",
-      "args": [
-        "~/jamf_mcp/mcp_jamf_server.js"
-      ]
+Or you can use a full path for example:  `/User/yourusername/Documents/Github/jamf_mcp/mcp_jamf_server.js`
+
+    {
+      "mcpServers": {
+        "jamf-pro": {
+          "command": "node",
+          "args": [
+            "~/jamf_mcp/mcp_jamf_server.js"
+          ]
+        }
+      }
     }
-  }
-}
 
 Save the setting.
 You will now see the jamf-pro server MCP connection.
 You may need to click enable or refresh.
 It will show a green dot when it connects to the mcp server.
 
-In Cursor open AI chat in Agent mode enter a question to test the connection
-"How many computers are in Jamf?"
+![cursor mcp connection](https://github.com/mat-griffin/jamf-mcp/blob/main/images/cursor_mcp_connection.png)
 
-If Cursor starts doing odd stuff like creating code or searching the web force it to use the jamf-pro mcp by saying "How many computers are in Jamf? Use the jamf-pro MCP connection."
+Now in Cursor open AI chat in Agent mode enter a question to test the connection:
+*"How many computers are in Jamf?"*
+
+If Cursor starts doing odd stuff like creating code or searching the web force it to use the jamf-pro mcp by saying: *"How many computers are in Jamf? Use the jamf-pro MCP connection."*
 
 If you get a response like:
-"Okay, I can help with that. I need your Jamf Pro username and password to get the computer counts. Could you please provide them?"
+*"Okay, I can help with that. I need your Jamf Pro username and password to get the computer counts. Could you please provide them?"*
 
-Enter you username and password in the chat! - This is clear text so this is why I say be prepared to change delete the account after testing.
+Enter you username and password in the chat! - This is **clear text** so this is why I say be prepared to change delete the account after testing.
 
 jamf_readonly_account
 my_jamf_password
 
 Cursor will response similar to
-"OK. I will use the credentials you provided to get the management counts from Jamf Pro."
+*"OK. I will use the credentials you provided to get the management counts from Jamf Pro."*
 
-On each use of the MCP query you may need to click the blue Run Tool to proceed. To stop this ensure Cursor Enable Auto Run Mode is ticked in Settings > Features
+On each use of the MCP query you may need to click the blue **Run Too**l to proceed. 
+To stop this ensure *Cursor Enable Auto Run Mode* is ticked in *Settings > Features*
 
 Cursor should respond with something like.
 
-According to Jamf Pro:
+*According to Jamf Pro:
 There are 2000 managed computers.
 There are 155 unmanaged computers.
-The total number of computers is 2155.
+The total number of computers is 2155.*
 
 Try another query like:
-"List 5 managed computers"
+*"List 5 managed computers."*
 
 Cursor should respond with something like:
 
-Here are the details:
+*Here are the details:
 ID: 3983
 ID: 3209
 ID: 7309
 ID: 2440
-ID: 2950
+ID: 2950*
 
 Now ask:
-"Show me details of 3983" (enter your choice of ID from the results you got)
+*"Show me details of 3983."* (enter your choice of ID from the results you got)
 
-You should get detailed information like this (some items have be changed in the example below).
+You should get detailed information like this *(some items have be changed in the example below)*.
 
 Okay, here are the details for the computer with ID 3983:
 
-General Information:
+*General Information:
 Name: C02XXXXX
 Platform: Mac
 Last Contact Time: 2025-04-03T13:49:34.784Z
@@ -164,13 +173,14 @@ User:
 Username: bob
 Real Name: bob smith
 Email: bob.smith@somewhere.com
-Position: User
-
-
+Position: User*
 Cursor may also respond with suggestions.
 
-### Connection Tools
+## Connection Tools
 If you examine the Cursor MCP Connection in Settings > MCP you will see there are 7 tools to retrieve information.
+
+![cursor mcp connection](https://github.com/mat-griffin/jamf-mcp/blob/main/images/cursor_mcp_connection.png)
+
 getComputerBySerial
 getComputerById
 listComputers
@@ -179,5 +189,4 @@ getManagementCounts
 getComputersBySerial
 getSecurityStatus
 
-
-As you are in Cursor use it to add more tools, fix my bugs and poor code!
+Thats it. As you are in Cursor use it to add more tools and fix my bugs and poor code and if you can solve the cleartext thing!
