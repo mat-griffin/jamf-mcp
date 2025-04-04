@@ -99,7 +99,7 @@ It will show a green dot when it connects to the mcp server.
 ![cursor mcp connection](https://github.com/mat-griffin/jamf-mcp/blob/main/images/cursor_mcp_connection.png)
 
 Now in Cursor open AI chat in Agent mode enter a question to test the connection:
-*"How many computers are in Jamf?"*
+***"How many computers are in Jamf?"***
 
 If Cursor starts doing odd stuff like creating code or searching the web force it to use the jamf-pro mcp by saying: *"How many computers are in Jamf? Use the jamf-pro MCP connection."*
 
@@ -108,72 +108,70 @@ If you get a response like:
 
 Enter you username and password in the chat! - This is **clear text** so this is why I say be prepared to change delete the account after testing.
 
-jamf_readonly_account
-my_jamf_password
+Enter in the chat box your details:
 
-Cursor will response similar to
+    jamf_readonly_account
+    my_jamf_password
+
+Cursor will respond similar to:
 *"OK. I will use the credentials you provided to get the management counts from Jamf Pro."*
 
-On each use of the MCP query you may need to click the blue **Run Too**l to proceed. 
+On each use of the MCP query you may need to click the blue **Run Tool** to proceed. 
 To stop this ensure *Cursor Enable Auto Run Mode* is ticked in *Settings > Features*
-
-Cursor should respond with something like.
-
-*According to Jamf Pro:
-There are 2000 managed computers.
-There are 155 unmanaged computers.
-The total number of computers is 2155.*
-
-Try another query like:
-*"List 5 managed computers."*
 
 Cursor should respond with something like:
 
-*Here are the details:
-ID: 3983
-ID: 3209
-ID: 7309
-ID: 2440
-ID: 2950*
+> *According to Jamf Pro: 
+> There are 2000 managed computers. 
+> There are 155 unmanaged computers. 
+> The total number of computers is 2155.*
+
+Try another query like:
+***"List 5 managed computers."***
+
+Cursor should respond with something like:
+
+>    Here are the details:
+>     ID: 3983
+>     ID: 3209
+>     ID: 7309
+>     ID: 2440
+>     ID: 2950
 
 Now ask:
-*"Show me details of 3983."* (enter your choice of ID from the results you got)
+***"Show me details of 3983."*** *(enter your choice of ID from the results you got)*
 
 You should get detailed information like this *(some items have be changed in the example below)*.
 
-Okay, here are the details for the computer with ID 3983:
+> Okay, here are the details for the computer with ID 3983:
+> 
+> General Information: 
+> Name: C02XXXXX 
+> Platform: Mac 
+> Last Contact Time: 2025-04-03T13:49:34.784Z 
+> Last Enrolled Date: 2024-07-09T11:07:14.769Z
+> Enrollment Method: Standard User 
+> Site: None 
+> Hardware: 
+> Model: MacBook Pro (16-inch, 2019) 
+> Model Identifier: MacBookPro16,1 
+> Serial Number: C02XXXXX
+> Processor: Unknown (Speed: 2400 MHz, 8 Cores) 
+> Memory: 32 GB 
+> MAC Address: 5C:XXXXX 
+> Operating System: Name: macOS Version: 15.3.2 
+> Build: 24D81
+> FileVault 2 Status: BOOT_ENCRYPTED 
+> Gatekeeper Status: APP_STORE_AND_IDENTIFIED_DEVELOPERS
+> Xprotect Version: 5292 
+> Storage: Device: disk0 (APPLE SSD AP0512N)
+> Size: ~500 GB Partitions: 
+> Includes Macintosh HD (Boot), VM, Data, Update, Preboot (various encryption states and usage percentages)
+> User: bob
+> Username: bob smith 
+> Email: bob.smith@somewhere.com 
+> Position: User
 
-*General Information:
-Name: C02XXXXX
-Platform: Mac
-Last Contact Time: 2025-04-03T13:49:34.784Z
-Last Enrolled Date: 2024-07-09T11:07:14.769Z
-Enrollment Method: Standard User
-Site: None
-Hardware:
-Model: MacBook Pro (16-inch, 2019)
-Model Identifier: MacBookPro16,1
-Serial Number: C02XXXXX (Note: This was listed as "Unknown" in the previous list view, but is present here)
-Processor: Unknown (Speed: 2400 MHz, 8 Cores)
-Memory: 32 GB
-MAC Address: 5C:XXXXX
-Operating System:
-Name: macOS
-Version: 15.3.2
-Build: 24D81
-FileVault 2 Status: BOOT_ENCRYPTED
-Security:
-Gatekeeper Status: APP_STORE_AND_IDENTIFIED_DEVELOPERS
-Xprotect Version: 5292
-Storage:
-Device: disk0 (APPLE SSD AP0512N)
-Size: ~500 GB
-Partitions: Includes Macintosh HD (Boot), VM, Data, Update, Preboot (various encryption states and usage percentages)
-User:
-Username: bob
-Real Name: bob smith
-Email: bob.smith@somewhere.com
-Position: User*
 Cursor may also respond with suggestions.
 
 ## Connection Tools
@@ -181,12 +179,13 @@ If you examine the Cursor MCP Connection in Settings > MCP you will see there ar
 
 ![cursor mcp connection](https://github.com/mat-griffin/jamf-mcp/blob/main/images/cursor_mcp_connection.png)
 
-getComputerBySerial
-getComputerById
-listComputers
-getExtensionAttributes
-getManagementCounts
-getComputersBySerial
-getSecurityStatus
+    getComputerBySerial
+    getComputerById
+    listComputers
+    getExtensionAttributes
+    getManagementCounts
+    getComputersBySerial
+    getSecurityStatus
 
-Thats it. As you are in Cursor use it to add more tools and fix my bugs and poor code and if you can solve the cleartext thing!
+Thats it. 
+As you are in Cursor use it to add more tools and fix my bugs and poor code and if you can solve the cleartext thing!
