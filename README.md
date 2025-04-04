@@ -23,7 +23,7 @@ As said this is **EXPERIMENTAL**.
 - Jamf Pro read-only account
 
 If Homebrew is not installed got to https://brew.sh and install.
-Once brew is installed install node:
+Once brew is installed install node, the command below fails quit Terminal and then try again.
 
     brew install node
 
