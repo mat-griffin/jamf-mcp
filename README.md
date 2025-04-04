@@ -95,6 +95,7 @@ Save the setting.
 You will now see the jamf-pro server MCP connection.
 You may need to click enable or refresh.
 It will show a green dot when it connects to the mcp server.
+If it shows red stil double check the path then quit Cursor and reopen.
 
 ![cursor mcp connection](https://github.com/mat-griffin/jamf-mcp/blob/main/images/cursor_mcp_connection.png)
 
