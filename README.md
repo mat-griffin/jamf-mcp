@@ -1,21 +1,27 @@
 # Jamf Pro MCP Server
 ⚠️ EXPERIMENTAL - READ before use.
 
+## Summary
 The MCP server provides integration to Jamf Pro. It has only been tested in Cursor AI.
 It allows for querying computer information by serial number, ID, user name from Cursor AI.
 The AI will summarise and then ask you what else you might want to know.
 
+## Security Warning
+- Cursor AI may require Jamf credentials in cleartext
+- Use a dedicated read-only test account
+- Plan to delete/change account credentials after use
 
-Issues:
+## Issues:
 Even though set in the mcp_jamf_server.js Cursor may require you to enter your Jamf username and password in cleartext! 
 Therefore be prepared to delete or change the Jamf account password after use.
 As said this is EXPERIMENTAL.
 
-
-# Requirements
-Cursor AI
-brew
-node
+## Prerequisites
+- Cursor AI
+- Homebrew
+- Node.js
+- Jamf Pro URL (format: https://myserver.jamfcloud.com/api)
+- Jamf Pro read-only account
 
 If brew is not installed got to https://brew.sh/and install.
 Once brew is installed install node:
