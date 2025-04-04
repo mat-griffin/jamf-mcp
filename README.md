@@ -126,6 +126,13 @@ Cursor should respond with something like:
 > There are 155 unmanaged computers. 
 > The total number of computers is 2155.*
 
+
+This screen grab shows the above
+https://github.com/mat-griffin/jamf-mcp/blob/main/images/cursor_jamf_output.png
+
+
+
+
 Try another query like:
 ***"List 5 managed computers."***
 
@@ -189,3 +196,6 @@ If you examine the Cursor MCP Connection in Settings > MCP you will see there ar
 
 Thats it. 
 As you are in Cursor use it to add more tools and fix my bugs and poor code and if you can solve the cleartext thing!
+
+
+
