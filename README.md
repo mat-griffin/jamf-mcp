@@ -8,7 +8,7 @@ The AI will summarise and then ask you what else you might want to know.
 
 ## Security Warning
 - Use a dedicated read-only Jamf test account.
-- Plan to delete/change the Jamf account credentials after use.
+- Delete the Jamf account credentials after use experimenting.
 
 ## Issues:
 This is **EXPERIMENTAL**.
@@ -104,7 +104,8 @@ Now in Cursor open AI chat in Agent mode enter a question to test the connection
 If Cursor starts doing odd stuff like creating code or searching the web force it to use the jamf-pro mcp by saying: *"How many computers are in Jamf? Use the jamf-pro MCP connection."*
 
 If you get a response like:
-*"Okay, I can help with that. I need your Jamf Pro username and password to get the computer counts. Could you please provide them?" tell Cursor the detials are in the @mcp_jamf_server.js
+*"Okay, I can help with that. I need your Jamf Pro username and password to get the computer counts. Could you please provide them?" 
+Tel cursor "use the details in @mcp_jamf_server.js Do not display the username or password in the chat."
 
 Cursor will respond similar to:
 *"OK. I will use the credentials to get the management counts from Jamf Pro."*
