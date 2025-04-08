@@ -7,13 +7,12 @@ It allows for querying computer information by serial number, ID, user name from
 The AI will summarise and then ask you what else you might want to know.
 
 ## Security Warning
-- Cursor AI may require Jamf credentials in cleartext!
-- Use a dedicated read-only Jamf test account
-- Plan to delete/change the Jamf account credentials after use
+- Use a dedicated read-only Jamf test account.
+- Plan to delete/change the Jamf account credentials after use.
 
 ## Issues:
-Even though set in the `mcp_jamf_server.js` Cursor may require you to enter your Jamf username and password in cleartext! Therefore be prepared to delete or change the Jamf account password after use.
-As said this is **EXPERIMENTAL**.
+This is **EXPERIMENTAL**.
+Therefore be prepared to delete or change the Jamf account & password after use.
 
 ## Prerequisites
 - Cursor AI
@@ -105,17 +104,10 @@ Now in Cursor open AI chat in Agent mode enter a question to test the connection
 If Cursor starts doing odd stuff like creating code or searching the web force it to use the jamf-pro mcp by saying: *"How many computers are in Jamf? Use the jamf-pro MCP connection."*
 
 If you get a response like:
-*"Okay, I can help with that. I need your Jamf Pro username and password to get the computer counts. Could you please provide them?"*
-
-Enter you username and password in the chat! - This is **clear text** so this is why I say be prepared to change delete the account after testing.
-
-Enter in the chat box your details:
-
-    jamf_readonly_account
-    my_jamf_password
+*"Okay, I can help with that. I need your Jamf Pro username and password to get the computer counts. Could you please provide them?" tell Cursor the detials are in the @mcp_jamf_server.js
 
 Cursor will respond similar to:
-*"OK. I will use the credentials you provided to get the management counts from Jamf Pro."*
+*"OK. I will use the credentials to get the management counts from Jamf Pro."*
 
 On each use of the MCP query you may need to click the blue **Run Tool** to proceed. 
 To stop this ensure *Cursor Enable Auto Run Mode* is ticked in *Settings > Features*
