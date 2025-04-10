@@ -98,7 +98,8 @@ If it shows red stil double check the path then quit Cursor and reopen.
 
 ![cursor mcp connection](https://github.com/mat-griffin/jamf-mcp/blob/main/images/cursor_mcp_connection.png)
 
-Now in Cursor open AI chat in Agent mode enter a question to test the connection:
+Now in Cursor open AI chat in Agent mode enter a question to test the connection.
+I also recommend to use claud-3.5-sonnet
 ***"How many computers are in Jamf?"***
 
 If Cursor starts doing odd stuff like creating code or searching the web force it to use the jamf-pro mcp by saying: *"How many computers are in Jamf? Use the jamf-pro MCP connection."*
