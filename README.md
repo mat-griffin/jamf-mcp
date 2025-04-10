@@ -189,7 +189,7 @@ If you examine the Cursor MCP Connection in Settings > MCP you will see there ar
     getSecurityStatus
 
 Thats it. 
-As you are in Cursor use it to add more tools and fix my bugs and poor code and if you can solve the cleartext thing!
+As you are in Cursor use it to add more tools and fix my bugs and poor code.
 
 
 
